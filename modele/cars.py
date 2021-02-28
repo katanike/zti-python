@@ -3,13 +3,10 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
+from modele.vehicle import Vehicle
+from utils import print_title
 
-class Vehicle(object):
-    pass
 
-
-class Bike(Vehicle):
-    pass
 
 
 class CarBrand:
@@ -17,13 +14,8 @@ class CarBrand:
     rok_zalozenia: int
 
 
-def print_underline():
-    print(44 * '*')
 
-
-def print_title(label):
-    print(15 * '*', label, 15 * '*')
-
+#############################
 
 class StatusEnum(Enum):
     def get_title(self):
@@ -31,6 +23,8 @@ class StatusEnum(Enum):
 
     def is_ok(self):
         raise NotImplementedError("Not implemented")
+
+###########################
 
 
 class StatusInfo(StatusEnum):
@@ -49,6 +43,9 @@ class ComponentStatus(StatusEnum):
 
     def is_ok(self):
         return self.name == StatusInfo.OK
+
+
+###############
 
 
 class Component:
@@ -87,7 +84,7 @@ class Components:
 
 
 class Car(Vehicle):
-    def __init__(self, brand: str, model: str, color: str, production_date: str, components: Components):
+    def __init__(self, brand: str, model: str, color: str, production_date: str, components: Components = None):
         """
         :param brand: Marka samochodu
         :param model: Model samochodu
@@ -95,10 +92,8 @@ class Car(Vehicle):
         :param production_date: Data produkcji auta
         :param components: Komponenty, z których składa się auto
         """
-        self.brand = brand
-        self.model = model
+        super().__init__(brand, model, production_date)
         self.color = color
-        self.production_date = production_date
         self.components = components
 
     def print_general_info(self):
@@ -111,32 +106,12 @@ class Car(Vehicle):
         print(f"Car model: {self.brand} {self.model}\t Color: {self.color}\n"
               f"Production date: {self.production_date}")
 
-
-CAR_COMPONENTS = Components(
-    Component('airbag'),
-    Component('painting'),
-    Component('mechanic'))
+    def podaj_typ(self):
+        return "Jestem autem"
 
 
-cars = [
-    Car('Seat', 'Ibiza', 'blue', '2016', CAR_COMPONENTS),
-    Car('Opel', 'Astra', 'green', '2014', Components(Component('airbag'),
-                                                     Component('painting', ComponentStatus.DAMAGED),
-                                                     Component('mechanic'),
-                                                     Component('wheels'),
-                                                     Component('cockpit',
-                                                               components=[
-                                                                   Component('Sterring Wheel'),
-                                                                   Component('Radio')
-                                                               ]))),
-    Car('Mazda', '6', 'white', '2013', CAR_COMPONENTS)
-]
 
+car = Car("ford", "T", "black", "1910")
 
-for car in cars:
-    car.print_general_info()
-
-for car in cars:
-    car.print_basic_info()
-    car.components.print_technical_info()
+print(car)
 

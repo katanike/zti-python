@@ -1,0 +1,3 @@
+
+class Bike(Vehicle):
+    pass

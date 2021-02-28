@@ -1,9 +1,6 @@
 
 
 class Car:
-    """
-    Ta klasa
-    """
     def __init__(self, brand, model, color, production_date, is_airbag_ok, is_painting_ok, is_mechanic_ok):
         """
         :param brand: Marka samochodu
@@ -14,7 +11,6 @@ class Car:
         :param is_painting_ok: Okresla, czy lakier jest oryginalny
         :param is_mechanic_ok: Okresla czy mechanika jest sprawna
         """
-
         self.brand = brand
         self.model = model
         self.color = color
@@ -22,6 +18,8 @@ class Car:
         self.is_airbag_ok = is_airbag_ok
         self.is_painting_ok = is_painting_ok
         self.is_mechanic_ok = is_mechanic_ok
+
+        print("airbag is ok? ", is_airbag_ok)
 
     def general_info(self):
         if self.is_airbag_ok and self.is_painting_ok and self.is_mechanic_ok:
@@ -38,14 +36,17 @@ class Car:
             airbag = 'OK'
         else:
             airbag = 'damaged or defective'
+
         if self.is_painting_ok:
             painting = 'OK'
         else:
             painting = 'damaged or defective'
+
         if self.is_mechanic_ok:
             mechanic = 'OK'
         else:
             mechanic = 'damaged or defective'
+
         print(14 * '*', 'Technical Info', 14 * '*')
         print("Technical efficiency:")
         print("Airbag: {}\nPainting: {}\nMechanic: {}".format(airbag, painting, mechanic))
