@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List
+from typing import List, Dict
 
 from modele.vehicle import Vehicle
 from utils import print_title
@@ -107,11 +107,16 @@ class Car(Vehicle):
               f"Production date: {self.production_date}")
 
     def podaj_typ(self):
-        return "Jestem autem"
+        typ_super = super().podaj_typ()
+        return "Jestem autem i " + typ_super
+
+    def to_dict(self) -> Dict:
+        return {
+            "brand": self.brand,
+            "model": self.model,
+            "color": self.color,
+            "production_date": self.production_date
+        }
 
 
-
-car = Car("ford", "T", "black", "1910")
-
-print(car)
 
