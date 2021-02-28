@@ -15,6 +15,13 @@ class Vehicle(object):
     def __repr__(self):
         return self.podaj_typ()
 
+    def to_dict(self):
+        return {
+            "brand": self.brand,
+            "model": self.model,
+            "production_date": self.production_date
+        }
+
 #
 # x = Vehicle("ford", "T", "1910")
 #

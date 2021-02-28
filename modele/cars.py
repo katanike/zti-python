@@ -111,12 +111,11 @@ class Car(Vehicle):
         return "Jestem autem i " + typ_super
 
     def to_dict(self) -> Dict:
-        return {
-            "brand": self.brand,
-            "model": self.model,
-            "color": self.color,
-            "production_date": self.production_date
-        }
+        props = super().to_dict()
+        props.update({
+            "color": self.color
+        })
+        return props
 
 
 
